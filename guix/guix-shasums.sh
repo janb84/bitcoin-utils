@@ -71,10 +71,12 @@ generate_markdown() {
     echo "**Host architecture:** \`$(uname -m)\`"
     echo "**Commit:** \`$commit_hash\`"
     echo ""
+    echo "\`\`\`shell"
     find "$output_dir" -type f -print0 | env LC_ALL=C sort -z | \
     xargs -r0 sha256sum | while IFS=' *' read -r checksum file; do
-        echo " \`$checksum\`  \`$file\` "
+        echo " $checksum $file "
     done
+    echo "\`\`\`"
 }
 
 if [[ $mode == "markdown" ]]; then
