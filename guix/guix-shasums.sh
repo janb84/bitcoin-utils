@@ -74,7 +74,7 @@ generate_markdown() {
     echo "\`\`\`shell"
     find "$output_dir" -type f -print0 | env LC_ALL=C sort -z | \
     xargs -r0 sha256sum | while IFS=' *' read -r checksum file; do
-        echo " $checksum $file "
+        echo "$checksum  $file"
     done
     echo "\`\`\`"
 }
